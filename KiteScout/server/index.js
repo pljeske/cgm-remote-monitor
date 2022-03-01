@@ -7,7 +7,7 @@ function create(env, ctx) {
     const dbhelper = require("./dbHelper.js")
 
     const isDev = process.env.NODE_ENV != 'production';
-    const PORT = Number(process.env.PORT) + 1 || 13371;
+    const PORT = Number(process.env.PORT) + 1 || 1338;
 
     const app = express();
 

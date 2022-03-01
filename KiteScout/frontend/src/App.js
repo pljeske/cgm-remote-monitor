@@ -77,8 +77,8 @@ function App() {
   const [chkBolus, setChkBolus] = useState(true);
   const [chkCharbs, setChkCarbs] = useState(true);
 
-  var localserver = "ks";
-  if (process.env.REACT_APP_LOCALSERVER) localserver = "http://localhost:13371";
+  var localserver = "";
+  if (process.env.REACT_APP_LOCALSERVER) localserver = "http://localhost:1338";
 
   const highThresh = 10;
   const lowThresh = 3.5;
@@ -248,7 +248,7 @@ function App() {
     reason = [];
     let start = new Date();
     if (!sgv.current || sgv.current.length == 0) {
-      alert("No data to show... try scrolling back in time or check your CONNSTR_mongo in Heroku!")
+      alert("No data to show... try scrolling back in time or check your MONGODB_URI in Heroku!")
       return;
     };
     sgv.current.forEach((e, index) => {
