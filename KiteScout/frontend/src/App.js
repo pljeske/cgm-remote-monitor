@@ -77,7 +77,7 @@ function App() {
   const [chkBolus, setChkBolus] = useState(true);
   const [chkCharbs, setChkCarbs] = useState(true);
 
-  var localserver = "/ks";
+  var localserver = "/kitescout";
   if (process.env.REACT_APP_LOCALSERVER) localserver = "http://localhost:1338";
 
   const highThresh = 10;
