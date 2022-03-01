@@ -12,7 +12,8 @@ function create(env, ctx) {
     const app = express();
 
     // Priority serve any static files.
-    app.use(express.static(path.resolve(__dirname, '../frontend/build')));
+    //app.use(express.static(path.resolve(__dirname, '../frontend/build')));
+    app.use(express.static('~/KiteScout/frontend/build'));
 
     //this is for debugging  
     app.use(function (req, res, next) {
