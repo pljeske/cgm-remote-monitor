@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 async function connectToMongo() {
-    var url = process.env.CONNSTR_mongo;
+    var url = process.env.MONGODB_URI;
 
     // create a client to mongodb
     var MongoClient = require('mongodb').MongoClient;
