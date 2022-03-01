@@ -117,15 +117,15 @@ function create(env, ctx) {
     });
 
     // All remaining requests return the React app, so it can handle routing.
-    app.get('*', function (request, response) {
-        response.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'), function (err) {
-            if (err) {
-                next(err);
-            } else {
-                console.log('File sent!');
-            }
-        });
-    });
+    // app.get('*', function (request, response) {
+    //     response.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'), function (err) {
+    //         if (err) {
+    //             next(err);
+    //         } else {
+    //             console.log('File sent!');
+    //         }
+    //     });
+    // });
 
     app.listen(PORT, function () {
         console.error(`Node ${isDev ? 'dev server' : 'cluster worker ' + process.pid}: listening on port ${PORT}`);
