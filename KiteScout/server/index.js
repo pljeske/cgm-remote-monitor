@@ -7,7 +7,7 @@ function create(env, ctx) {
     const dbhelper = require("./dbHelper.js")
 
     const isDev = process.env.NODE_ENV != 'production';
-    const PORT = process.env.PORT + "1" || 5000;
+    const PORT = Number(process.env.PORT) + 1 || 13371;
 
     const app = express();
 
@@ -118,7 +118,13 @@ function create(env, ctx) {
 
     // All remaining requests return the React app, so it can handle routing.
     app.get('*', function (request, response) {
-        response.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
+        response.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'), function (err) {
+            if (err) {
+                next(err);
+            } else {
+                console.log('File sent!');
+            }
+        });
     });
 
     app.listen(PORT, function () {

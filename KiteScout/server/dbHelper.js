@@ -11,7 +11,7 @@ async function connectToMongo() {
     // make client connect to mongo service
     const dbClient = await MongoClient.connect(url);
     if (!dbClient) {
-        console.log("failed to connect to mongodb!\nCheck your connection string: " + process.env.CONNSTR_mongo)
+        console.log("failed to connect to mongodb!\nCheck your connection string: " + process.env.MONGODB_URI)
         return;
     }
     var db = null;

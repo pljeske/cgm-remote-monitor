@@ -78,7 +78,7 @@ function App() {
   const [chkCharbs, setChkCarbs] = useState(true);
 
   var localserver = "";
-  if (process.env.REACT_APP_LOCALSERVER) localserver = "http://localhost:5000";
+  if (process.env.REACT_APP_LOCALSERVER) localserver = "http://localhost:13371";
 
   const highThresh = 10;
   const lowThresh = 3.5;
