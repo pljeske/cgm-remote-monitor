@@ -12,8 +12,8 @@ function create(env, ctx) {
     const app = express();
 
     // Priority serve any static files.
-    //app.use(express.static(path.resolve(__dirname, '../frontend/build')));
-    app.use(express.static('~/KiteScout/frontend/build'));
+    app.use(express.static(path.resolve(__dirname, '../frontend/build')));
+    //app.use(express.static('~/KiteScout/frontend/build'));
 
     //this is for debugging  
     app.use(function (req, res, next) {
@@ -117,16 +117,16 @@ function create(env, ctx) {
         res.send(JSON.stringify(entries));
     });
 
-    // All remaining requests return the React app, so it can handle routing.
-    // app.get('*', function (request, response) {
-    //     response.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'), function (err) {
-    //         if (err) {
-    //             next(err);
-    //         } else {
-    //             console.log('File sent!');
-    //         }
-    //     });
-    // });
+    //All remaining requests return the React app, so it can handle routing.
+    app.get('*', function (request, response) {
+        response.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'), function (err) {
+            if (err) {
+                next(err);
+            } else {
+                console.log('File sent!');
+            }
+        });
+    });
 
     app.listen(PORT, function () {
         console.error(`Node ${isDev ? 'dev server' : 'cluster worker ' + process.pid}: listening on port ${PORT}`);
