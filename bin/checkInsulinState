@@ -1,0 +1,15 @@
+#! /app/.heroku/node/bin/node
+
+async function checkInsulinState() {
+    const stateHelper = require("./checkState.js");
+    try {
+        await stateHelper.checkState("insulin")
+    } catch (err) {
+        console.log(err);
+    } finally {
+        process.exit();//for heroku
+    }
+
+}
+
+checkInsulinState();
