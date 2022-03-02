@@ -1273,7 +1273,7 @@ function App() {
                 </span>
               </td>
               <td rowspan="2" style={{ textAlign: "left", verticalAlign: "bottom"}}>
-                <span style={currInfo?.bg > 3.5 && currInfo?.bg < 10 ? { color: 'green' } : { color: 'red' }}>({currInfo?.dBg})</span>
+                <span style={currInfo?.dBg.includes("-") ? { color: 'red' } : { color: 'green' }}>({currInfo?.dBg})</span>
               </td>
               <td>IOB:</td>
               <td>{currInfo?.iob}U</td>
