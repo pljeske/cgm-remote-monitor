@@ -480,7 +480,7 @@ function App() {
 
 
     let tempBasLoop = [];
-    var lastStart = new Date().getTime() + 1000 * 3600*5;
+    var lastStart = new Date().getTime() + 1000 * 3600 * 5;
     tempBasal?.current.forEach((e, index) => {
       let t = new Date(e.x).getTime();
       if (t > firstBGtime) {
@@ -840,7 +840,7 @@ function App() {
     if (!ahead.current && c.chart.scales.x.min) {
       return c.chart.scales.x.min;
     } else if (sgv.current && c.chart.scales.x.min) {
-      return Math.max(new Date(sgv.current[0].x),new Date(openaps.current[0].x)) - currWidth.current / 2;
+      return Math.max(new Date(sgv.current[0].x), new Date(openaps.current[0].x)) - currWidth.current / 2;
     }
     //return new Date(Math.round((new Date().getTime() - 1000 * 3600 * 12) / stepSize) * stepSize);
     return new Date().getTime() - startWidth / 2;
@@ -850,7 +850,7 @@ function App() {
     if (!ahead.current && c.chart.scales.x.max) {
       return c.chart.scales.x.max;
     } else if (sgv.current && c.chart.scales.x.max) {
-      return Math.max(new Date(sgv.current[0].x),new Date(openaps.current[0].x)) + currWidth.current / 2;
+      return Math.max(new Date(sgv.current[0].x), new Date(openaps.current[0].x)) + currWidth.current / 2;
     }
     return new Date().getTime() + maxOffset;
   }
@@ -968,7 +968,7 @@ function App() {
             if (e.text.includes("cob") && e.text != "cob") return null;
             return e;
           },
-          
+
           generateLabels: (chart) => { //generera egna labels... 
             const { data } = chart;
 
@@ -1039,7 +1039,7 @@ function App() {
           else {
             meta.hidden = true;
             //ci.data.datasets[index].backgroundColor = RGB_reda;
-            
+
             // let i = a.legendItems.findIndex(x => x.text == name);
             // let hitbox = a.legendHitBoxes[i];
             // // Strikethrough the text if hidden
@@ -1212,8 +1212,10 @@ function App() {
       } else {
         ahead.current = false;
       }
+      let dbg = Number(currSug.tick) > 0 ? "+" + (Number(currSug.tick) / 18).toFixed(1) : (Number(currSug.tick) / 18).toFixed(1);
       setCurrInfo({
         bg: bs.bg.toFixed(1),
+        dBg: dbg,
         iob: currOpenAps.iob.iob.toFixed(1),
         act: currOpenAps.iob.activity.toFixed(3),
         cob: currSug?.COB ? currSug.COB.toFixed(1) : "",
@@ -1260,41 +1262,46 @@ function App() {
   }
   return (
     <div className="App">
-      <div className="info">
+      <div className="info" style={{ maxHeight: "30vh" }}>
 
-        <table className="infoTable">
+        <table className="infoTable" >
           <tbody>
             <tr>
-              <td>({(Math.abs(updStatus.getTime() - new Date(lastFetch.current)) / 1000 / 60).toFixed(1)}min) BG</td>
-              <td>{currInfo?.bg}</td>
+              <td rowspan="4">[{(Math.abs(updStatus.getTime() - new Date(lastFetch.current)) / 1000 / 60).toFixed(1)}min]</td>
+              <td rowspan="4" style={{ fontSize: "10vh" }}>
+                <div style={currInfo?.bg > 3.5 && currInfo?.bg < 10 ? { color: 'green' } : { color: 'red' }}>
+                  {currInfo?.bg}
+                  <span style={{ fontSize: "3vh", verticalAlign: "middle" }}>({currInfo?.dBg})</span>
+                </div>
+              </td>
               <td>IOB</td>
               <td>{currInfo?.iob}U</td>
-            </tr>
-            <tr>
-              <td>Basal</td>
-              <td>{currInfo?.basal}U</td>
-              <td>COB</td>
-              <td>{currInfo?.cob}g</td>
-            </tr>
-            <tr>
               <td>Activity</td>
               <td>{currInfo?.act}</td>
+            </tr>
+            <tr>
+              <td>COB</td>
+              <td>{currInfo?.cob}g</td>
               <td>Autosens</td>
               <td>{currInfo?.sens}%</td>
+            </tr>
+            <tr>
+            <td>Basal</td>
+              <td>{currInfo?.basal}U</td>
             </tr>
           </tbody>
         </table>
         {/* <ReactTooltip type={currInfo?.reason ? currInfo.reason.split(";")[0] : ""} event="click"> */}
-        <div style={{ minHeight: "40px", maxHeight: "50px", maxWidth: "500px", margin: "auto" }} data-tip={currInfo ? currInfo.reason : ""} >
+        <div style={{ border: '1px solid gray', display: "inline-block", padding: "1vh" }} data-tip={currInfo ? currInfo.reason : ""} >
 
-          {currInfo?.reason ? "(" + createTooltip(currInfo?.reason) + ") " + currInfo.reason.split(";")[1] : " "}<br />
+          {currInfo?.reason ? "(" + createTooltip(currInfo.reason) + ") " + currInfo.reason.split(";")[1] : " "}<br />
 
           {currInfo?.reason ? currInfo.reason.split(";")[2] : " "}
         </div>
         {/* </ReactTooltip> */}
         <ReactTooltip multiline={true} className="tooltip" />
       </div>
-      <div style={{ height: "75vh" }}>
+      <div style={{ height: "65vh" }}>
         <Line className="MainChart"
           ref={chartRef}
           options={chartOptions}
@@ -1305,32 +1312,23 @@ function App() {
             // marginTop: "50px",
           }}
         />
-        <div className="chkboxes">
-          Show labels: smb
-          <input
-            type="checkbox"
-            checked={chkSmb}
-            onChange={e => setChkSmb(e.target.checked)}
-          /> bolus<input
-            type="checkbox"
-            checked={chkBolus}
-            onChange={e => setChkBolus(e.target.checked)}
-          /> carbs<input
-            type="checkbox"
-            checked={chkCharbs}
-            onChange={e => setChkCarbs(e.target.checked)}
-          />
-        </div>
-        {/* <Line className="MainChart"
-        options={chartOptions}
-        data={chartData}
-        style={{
-          backgroundColor: "black",
-          // height: "50vh",
-          marginTop: "100px",
-          marginBottom: "50px"
-        }}
-      /> */}
+      </div>
+
+      <div style={{ height: "5vh" }} className="chkboxes">
+        Show labels: smb
+        <input
+          type="checkbox"
+          checked={chkSmb}
+          onChange={e => setChkSmb(e.target.checked)}
+        /> bolus<input
+          type="checkbox"
+          checked={chkBolus}
+          onChange={e => setChkBolus(e.target.checked)}
+        /> carbs<input
+          type="checkbox"
+          checked={chkCharbs}
+          onChange={e => setChkCarbs(e.target.checked)}
+        />
       </div>
     </div>
   );
