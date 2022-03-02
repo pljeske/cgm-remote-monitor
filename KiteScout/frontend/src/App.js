@@ -1217,7 +1217,7 @@ function App() {
         bg: bs.bg.toFixed(1),
         dBg: dbg,
         iob: currOpenAps.iob.iob.toFixed(1),
-        act: (currOpenAps.iob.activity*100).toFixed(1),
+        act: (currOpenAps.iob.activity * 100).toFixed(1),
         cob: currSug?.COB ? currSug.COB.toFixed(1) : "",
         sens: currSug?.sensitivityRatio ? (currSug.sensitivityRatio * 100).toFixed(0) : "",
         basal: getNearestValue(currBGLinePos.current, tempBasal.current).basal.toFixed(2),
@@ -1272,7 +1272,7 @@ function App() {
                   {currInfo?.bg}
                 </span>
               </td>
-              <td rowspan="2" style={{ textAlign: "left", verticalAlign: "bottom"}}>
+              <td rowspan="2" style={{ textAlign: "left", verticalAlign: "bottom" }}>
                 <span style={currInfo?.dBg.includes("-") ? { color: 'red' } : { color: 'green' }}>({currInfo?.dBg})</span>
               </td>
               <td>IOB:</td>
@@ -1287,7 +1287,7 @@ function App() {
               <td>{currInfo?.sens}%</td>
             </tr>
             <tr>
-            <td>[{(Math.abs(updStatus.getTime() - new Date(lastFetch.current)) / 1000 / 60).toFixed(1)}min]</td>
+              <td>[{(Math.abs(updStatus.getTime() - new Date(lastFetch.current)) / 1000 / 60).toFixed(1)}min]</td>
               <td>Basal:</td>
               <td>{currInfo?.basal}U</td>
             </tr>
