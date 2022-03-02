@@ -1217,10 +1217,10 @@ function App() {
         bg: bs.bg.toFixed(1),
         dBg: dbg,
         iob: currOpenAps.iob.iob.toFixed(1),
-        act: currOpenAps.iob.activity.toFixed(3),
+        act: (currOpenAps.iob.activity*100).toFixed(1),
         cob: currSug?.COB ? currSug.COB.toFixed(1) : "",
         sens: currSug?.sensitivityRatio ? (currSug.sensitivityRatio * 100).toFixed(0) : "",
-        basal: getNearestValue(currBGLinePos.current, tempBasal.current).basal,
+        basal: getNearestValue(currBGLinePos.current, tempBasal.current).basal.toFixed(2),
         reason: currSug?.reason
       })
       //lastBGLinePos = currBGLinePos.current;
@@ -1267,38 +1267,38 @@ function App() {
         <table className="infoTable" >
           <tbody>
             <tr>
-              <td rowspan="3">[{(Math.abs(updStatus.getTime() - new Date(lastFetch.current)) / 1000 / 60).toFixed(1)}min]</td>
-              <td rowspan="3" style={{ fontSize: "10vmin" }}>
-                <div style={currInfo?.bg > 3.5 && currInfo?.bg < 10 ? { color: 'green' } : { color: 'red' }}>
+              <td rowspan="3" >
+                <span style={currInfo?.bg > 3.5 && currInfo?.bg < 10 ? { color: 'green', fontSize: "10vmin" } : { color: 'red', fontSize: "10vmin" }}>
                   {currInfo?.bg}
-                  <span style={{ fontSize: "3vmin", verticalAlign: "middle" }}>({currInfo?.dBg})</span>
-                </div>
+                </span>
               </td>
-              <td>IOB</td>
+              <td rowspan="2" style={{ textAlign: "left", verticalAlign: "bottom"}}>
+                <span style={currInfo?.bg > 3.5 && currInfo?.bg < 10 ? { color: 'green' } : { color: 'red' }}>({currInfo?.dBg})</span>
+              </td>
+              <td>IOB:</td>
               <td>{currInfo?.iob}U</td>
-              <td>Activity</td>
+              <td>Activity:</td>
               <td>{currInfo?.act}</td>
             </tr>
             <tr>
-              <td>COB</td>
+              <td>COB:</td>
               <td>{currInfo?.cob}g</td>
-              <td>Autosens</td>
+              <td>Autosens:</td>
               <td>{currInfo?.sens}%</td>
             </tr>
             <tr>
-            <td>Basal</td>
+            <td>[{(Math.abs(updStatus.getTime() - new Date(lastFetch.current)) / 1000 / 60).toFixed(1)}min]</td>
+              <td>Basal:</td>
               <td>{currInfo?.basal}U</td>
             </tr>
           </tbody>
         </table>
-        {/* <ReactTooltip type={currInfo?.reason ? currInfo.reason.split(";")[0] : ""} event="click"> */}
         <div style={{ border: '1px solid gray', display: "inline-block", padding: "1vh" }} data-tip={currInfo ? currInfo.reason : ""} >
 
           {currInfo?.reason ? "(" + createTooltip(currInfo.reason) + ") " + currInfo.reason.split(";")[1] : " "}<br />
 
           {currInfo?.reason ? currInfo.reason.split(";")[2] : " "}
         </div>
-        {/* </ReactTooltip> */}
         <ReactTooltip multiline={true} className="tooltip" />
       </div>
       <div style={{ height: "65vh" }}>
