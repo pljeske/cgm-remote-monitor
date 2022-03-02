@@ -1267,11 +1267,11 @@ function App() {
         <table className="infoTable" >
           <tbody>
             <tr>
-              <td rowspan="4">[{(Math.abs(updStatus.getTime() - new Date(lastFetch.current)) / 1000 / 60).toFixed(1)}min]</td>
-              <td rowspan="4" style={{ fontSize: "10vh" }}>
+              <td rowspan="3">[{(Math.abs(updStatus.getTime() - new Date(lastFetch.current)) / 1000 / 60).toFixed(1)}min]</td>
+              <td rowspan="3" style={{ fontSize: "10vmin" }}>
                 <div style={currInfo?.bg > 3.5 && currInfo?.bg < 10 ? { color: 'green' } : { color: 'red' }}>
                   {currInfo?.bg}
-                  <span style={{ fontSize: "3vh", verticalAlign: "middle" }}>({currInfo?.dBg})</span>
+                  <span style={{ fontSize: "3vmin", verticalAlign: "middle" }}>({currInfo?.dBg})</span>
                 </div>
               </td>
               <td>IOB</td>
