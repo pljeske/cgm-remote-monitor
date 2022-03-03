@@ -55,9 +55,7 @@ Now you need to enter the Config-vars (same as you did with Nightscout)
 
 2. Go back to your omnipod-stash-app and "Settings"-tab/"Reveal config vars" 
 3. Add these vars: (key value) => "Add"
-    - **CONNSTR_mongo** = (the one you copied from NS: "MONGODB_URI" = mongodb+srv://.........)
     - **HEROKU_APP_NAME** = Same as the one you choose for the app. (mynamediabetesstash in example above!)
-
     - **FROM** = **ordernewpods** (use this if you do not know what you're doing...)
     - **EMAIL_TO** = (comma separated list of emails to get notification)
 

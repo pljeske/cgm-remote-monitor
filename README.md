@@ -1,3 +1,59 @@
+## Customization of Nightscout
+This is a combination of a slightly tweaked version of Nightscout and two of my own custom build react-apps that helps with APS-looping.
+## Nightscout (slightly modified)
+![Nightscout](./assets/ns.png)
+
+## KiteScout (my version)
+![kitescout](./assets/kitescout.png)
+
+- **Nightscout** - same as before but added a little extra openaps stuff
+- **Kitescout** - Copy-cat of Nightscout-web but with all the features I miss in NS. I used a graph-js-library that comes with a bunch of awesome features like:
+  - Infinit panning (does not only show 2 days, but gets more data the further you pan)
+  - zoom - like it should be done (not the hour-selection on NS, but use scroll-wheel or fingers to scroll)
+  - Added the data that is shown in AAPS but not in NS: 
+    - IOB
+    - COB
+    - Activity
+    - Sensitivity
+  - Reason - displays the reason for why openAPS decided to make its adjustment. 
+  - Prediction lines missing? yes, but they're really easy to add, just havn't decided how jet (tried, and it works)
+- **OmnipodStash** - This is a neat little web-app that keeps track of your stash of omnipods/sensors/insulin bottles and will send you enoying email once a day when one of them runs low. 
+
+![omnipodstash](./lib/omnipod_stash/Assets/website.png)
+
+
+
+The installation process is the same as with a usual nightscout installation, but you also need to add these variables to get email notifications to work in omnipodstash: 
+
+- **HEROKU_APP_NAME** = Same as the one you choose for the app (without "https://" and ".herokuapp.com")
+- **FROM** = **ordernewpods** 
+- **EMAIL_TO** = (comma separated list of emails to get notification)
+
+Optional parameters (3 is default value for these ones => less than 3 pods/sensors/insulin will send you and email per day!)
+- **LANGUAGE** = ENG (deafults to email text in swedish...)
+- **INSULINLIMIT** = 3
+- **PODLIMIT** = 3
+- **SENSORLIMIT** = 3
+
+You also need to setup a task scheduler that searches for pod/sensor switches in the NS-db. 
+
+## Heroku Scheduler
+Note! Heroku does not promise that the task will be run at every scheduled time! I have noticed that it skipps tasks once in a while, but that's ok, as long as it doesn't skip several days in a row!
+
+To get you app to update/check your stash once a day, you need to setup a Task scheduler.
+1. Open the "Resources"-tab and in the Add-ons searchbox type "heroku scheduler" and click on it
+2. Make sure you have the "Standard - Free"-plan selected (default) and press "Submit order from" 
+3. Click on the newly added "Heroku Scheduler" (opens up new page)
+4. "Create job"
+5. "Every day at..." - and select a time (obs! UTC = London time!)
+6. after the $ paste "runAllTasks" (without the "")
+7. click "save job"
+8. 
+![email](./lib/omnipod_stash/Assets/task.png)
+
+
+## ********** End of custom stuff **************
+
 Nightscout Web Monitor (a.k.a. cgm-remote-monitor)
 ======================================
 
@@ -59,6 +115,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Nightscout Web Monitor (a.k.a. cgm-remote-monitor)](#nightscout-web-monitor-aka-cgm-remote-monitor)
+- [Looking for documentation?](#looking-for-documentation)
+  - [End user?](#end-user)
+  - [Developer?](#developer)
+  - [#WeAreNotWaiting and [this](https://vimeo.com/109767890) is why.](#wearenotwaiting-and-this-is-why)
 - [Install](#install)
   - [Supported configurations:](#supported-configurations)
   - [Recommended minimum browser versions for using Nightscout:](#recommended-minimum-browser-versions-for-using-nightscout)
@@ -79,6 +140,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
     - [Predefined values for your browser settings (optional)](#predefined-values-for-your-browser-settings-optional)
     - [Predefined values for your server settings (optional)](#predefined-values-for-your-server-settings-optional)
     - [Views](#views)
+    - [Split View](#split-view)
     - [Plugins](#plugins)
       - [Default Plugins](#default-plugins)
         - [`delta` (BG Delta)](#delta-bg-delta)
@@ -116,6 +178,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
         - [`googlehome` (Google Home/DialogFLow)](#googlehome-google-homedialogflow)
         - [`speech` (Speech)](#speech-speech)
         - [`cors` (CORS)](#cors-cors)
+        - [`dbsize` (Database Size)](#dbsize-database-size)
       - [Extended Settings](#extended-settings)
       - [Pushover](#pushover)
       - [IFTTT Maker](#ifttt-maker)
