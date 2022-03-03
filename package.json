@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "node lib/server/server.js",
-    "build": "cd lib/kitescout/frontend/ && npm install && npm run build",
+    "build": "cd lib/kitescout/frontend/ && npm install && npm run build && cd ../omnipod_stash/frontend/ && npm install && npm run build",
     "test": "env-cmd -f ./my.test.env mocha --require ./tests/hooks.js -exit ./tests/*.test.js",
     "test-single": "env-cmd -f ./my.test.env mocha --require ./tests/hooks.js --exit ./tests/$TEST.test.js",
     "test-ci": "env-cmd -f ./tests/ci.test.env nyc --reporter=lcov --reporter=text-summary mocha --require ./tests/hooks.js --exit ./tests/*.test.js",
