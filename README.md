@@ -23,7 +23,7 @@ This is a combination of a slightly tweaked version of Nightscout and two of my 
 
 
 
-The installation process is the same as with a usual nightscout installation, but you also need to add these variables to get email notifications to work in omnipodstash: 
+The installation process is the same as with a usual nightscout installation, but you need to make a fork of my repo instead of the oficial NS-repo! You also need to add these variables in Heroku to get email notifications to work in omnipodstash: 
 
 - **HEROKU_APP_NAME** = Same as the one you choose for the app (without "https://" and ".herokuapp.com")
 - **FROM** = **ordernewpods** 
@@ -34,6 +34,8 @@ Optional parameters (3 is default value for these ones => less than 3 pods/senso
 - **INSULINLIMIT** = 3
 - **PODLIMIT** = 3
 - **SENSORLIMIT** = 3
+
+See [this list](https://github.com/klalle/AAPS-installation-setup/blob/main/README_EN.md#install-nightscout) of my Heroku-variables to get your NS to look like my NS-site above (omnipod-stash-specific settings like "HEROKU_APP_NAME", "FROM" and "EMAIL_TO" are not included in this list...)
 
 You also need to setup a task scheduler that searches for pod/sensor switches in the NS-db. 
 
