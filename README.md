@@ -22,8 +22,9 @@ This is a combination of a slightly tweaked version of Nightscout and two of my 
 ![omnipodstash](./lib/omnipod_stash/Assets/website.png)
 
 
-
-The installation process is the same as with a usual nightscout installation, but you need to make a fork of my repo instead of the oficial NS-repo! You also need to add these variables in Heroku to get email notifications to work in omnipodstash: 
+## Installation
+The installation process is the same as with a usual nightscout installation, but you need to make a fork of my repo instead of the oficial NS-repo, and then choose to deploy **wip/kitescout** instead of master-branch! 
+You also need to add these variables in Heroku to get email notifications to work in omnipodstash: 
 
 - **HEROKU_APP_NAME** = Same as the one you choose for the app (without "https://" and ".herokuapp.com")
 - **FROM** = **ordernewpods** 
