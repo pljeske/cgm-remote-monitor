@@ -2,7 +2,7 @@ const emailHelper = require("./emailHelper.js");
 
 async function checkState(Typ) {
     // we create 'users' collection in newdb database
-    var url = process.env.CONNSTR_mongo;
+    var url = process.env.MONGODB_URI;
 
     // create a client to mongodb
     var MongoClient = require('mongodb').MongoClient;
@@ -10,7 +10,7 @@ async function checkState(Typ) {
     // make client connect to mongo service
     const dbClient = await MongoClient.connect(url);
     if (!dbClient) {
-        console.log("failed to connect to mongodb!\nCheck your connection string: " + process.env.CONNSTR_mongo);
+        console.log("failed to connect to mongodb!\nCheck your connection string: " + process.env.MONGODB_URI);
         return;
     }
     var db = null;
