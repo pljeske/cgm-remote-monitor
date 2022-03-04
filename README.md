@@ -51,10 +51,17 @@ To get you app to update/check your stash once a day, you need to setup a Task s
 5. "Every day at..." - and select a time (obs! UTC = London time!)
 6. after the $ paste "runAllTasks" (without the "")
 7. click "save job"
-8. 
+
+
 ![email](./lib/omnipod_stash/Assets/task.png)
 
 
+If you don't want to change your Nightscout, but want to try my prograns as stand-alone applications: 
+- **[OmnipodStash](https://github.com/maja-lofgren/omnipod_stash)**
+- **[Kitescout](https://github.com/klalle/kitescout)**
+  - no readme-file.. but take a look at omnipod-stash above how it's done in Heroku! 
+  - needs config-var: MONGODB_URI
+  - If setup in another heroku-account: use https://kaffeine.herokuapp.com/ to hinder it from going into sleep...
 ## ********** End of custom stuff **************
 
 Nightscout Web Monitor (a.k.a. cgm-remote-monitor)
