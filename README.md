@@ -7,7 +7,7 @@ This is a combination of a slightly tweaked version of Nightscout and two of my 
 ![kitescout](./assets/kitescout.png)
 
 - **Nightscout** - same as before but added a little extra openaps stuff
-- **Kitescout** - Copy-cat of Nightscout-web but with all the features I miss in NS. I used a graph-js-library that comes with a bunch of awesome features like:
+- **Kitescout** - Copy-cat of Nightscout-web but with all the features I miss in NS. I used a graph-js-library that enabled me to add a bunch of awesome features like:
   - Infinit panning (does not only show 2 days, but gets more data the further you pan)
   - zoom - like it should be done (not the hour-selection on NS, but use scroll-wheel or fingers to scroll)
   - Added the data that is shown in AAPS but not in NS: 
@@ -16,7 +16,7 @@ This is a combination of a slightly tweaked version of Nightscout and two of my 
     - Activity
     - Sensitivity
   - Reason - displays the reason for why openAPS decided to make its adjustment. 
-  - Prediction lines missing? yes, but they're really easy to add, just havn't decided how jet (tried, and it works)
+  - Prediction lines missing? yes, but they're really easy to add, just havn't decided how I want them jet (tried, and it works)
 - **OmnipodStash** - This is a neat little web-app that keeps track of your stash of omnipods/sensors/insulin bottles and will send you enoying email once a day when one of them runs low. 
 
 ![omnipodstash](./lib/omnipod_stash/Assets/website.png)
@@ -62,6 +62,7 @@ If you don't want to change your Nightscout, but want to try my prograns as stan
   - no readme-file.. but take a look at omnipod-stash above how it's done in Heroku! 
   - needs config-var: MONGODB_URI
   - If setup in another heroku-account: use https://kaffeine.herokuapp.com/ to hinder it from going into sleep...
+  - 
 ## ********** End of custom stuff **************
 
 Nightscout Web Monitor (a.k.a. cgm-remote-monitor)
