@@ -48,6 +48,10 @@ git push --set-upstream origin wip/kitescout
 6. Log into [heroku](www.heroku.com) and select the "Deploy"-tab
 
 7. Scroll down to the very bottom and change from "master" to "wip/kitescout" and press **"Deploy Branch"**
+   - If yo're not seing the "Depoly branch" you might have lost connection to your github. 
+     -  scroll up to "Deployment method" and choose Github and connect to you github
+     -  select cgm-remote-monitor next to "App connected to Github" 
+     -  now Deploy Branch should pop up at the bottom!
   
 Congratulations, you now have my branch deployed to your heroku.
 
