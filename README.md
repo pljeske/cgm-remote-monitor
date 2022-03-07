@@ -23,10 +23,40 @@ This is a combination of a slightly tweaked version of Nightscout and two of my 
 
 
 ## Installation
-The installation process is the same as with a usual nightscout installation, but you need to fetch my branch **wip/kitescout** from my fork, and then choose to the branch (**wip/kitescout** instead of master-branch! 
+The installation process is the same as with a usual nightscout installation, but you need to fetch my branch **wip/kitescout** from my fork, and then choose to the branch (**wip/kitescout**) instead of master-branch under Heroku/deploy!
+Here is how you'd do it from the terminal 
+- Since you have installed AAPS or Ios loop - your computer already have git installed.
+1. create a folder on the computer where you want to store Nightscout code
+2. open terminal in that folder
+   - if on windws: type "cmd" into the location bar at the top of the window (see [this](https://www.youtube.com/watch?v=Bp5Fi3X3s4w) if you get stuck)
+3. clone your fork of Nightscout from github to that folder by typing this command (change "`<yourgithubusername>`" to you actual username)
+   ```bash
+   git clone https://github.com/<yourgithubusername>/cgm-remote-monitor.git
+   ```
+   (you can find your  username if you open [github](www.github.com) if you have forgotten it)
+4. Grab the branch from my fork in two steps: 
+```bash
+git remote add -f klalle https://github.com/klalle/cgm-remote-monitor.git
+```
+```bash
+git checkout -b wip/kitescout klalle/wip/kitescout
+```
+5. Push my branch to your fork on github:
+```bash
+git push --set-upstream origin wip/kitescout
+```
+6. Log into [heroku](www.heroku.com) and select the "Deploy"-tab
 
+7. Scroll down to the very bottom and change from "master" to "wip/kitescout" and press **"Deploy Branch"**
+  
+Congratulations, you now have my branch deployed to your heroku.
 
-You also need to add these variables in Heroku to get email notifications to work in omnipodstash: 
+To enable the OmnipodStash-app to function, you also need:
+  - to enable 3 heroku-variables
+  - a scheduled task that finds pods/sensor changes
+
+## Heroku variables
+Add these variables in Heroku to get email notifications:
 
 - **HEROKU_APP_NAME** = Same as the one you choose for the app (without "https://" and ".herokuapp.com")
 - **FROM** = **ordernewpods** 
@@ -42,7 +72,7 @@ See [this list](https://github.com/klalle/AAPS-installation-setup/blob/main/READ
 
 You also need to setup a task scheduler that searches for pod/sensor switches in the NS-db. 
 
-## Heroku Scheduler
+## Heroku Task Scheduler
 Note! Heroku does not promise that the task will be run at every scheduled time! I have noticed that it skipps tasks once in a while, but that's ok, as long as it doesn't skip several days in a row!
 
 To get you app to update/check your stash once a day, you need to setup a Task scheduler.
