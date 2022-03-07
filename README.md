@@ -73,8 +73,6 @@ See [this list](https://github.com/klalle/AAPS-installation-setup/blob/main/READ
 You also need to setup a task scheduler that searches for pod/sensor switches in the NS-db. 
 
 ## Heroku Task Scheduler
-Note! Heroku does not promise that the task will be run at every scheduled time! I have noticed that it skipps tasks once in a while, but that's ok, as long as it doesn't skip several days in a row!
-
 To get you app to update/check your stash once a day, you need to setup a Task scheduler.
 1. Open the "Resources"-tab and in the Add-ons searchbox type "heroku scheduler" and click on it
 2. Make sure you have the "Standard - Free"-plan selected (default) and press "Submit order from" 
@@ -83,7 +81,6 @@ To get you app to update/check your stash once a day, you need to setup a Task s
 5. "Every day at..." - and select a time (obs! UTC = London time!)
 6. after the $ paste "runAllTasks" (without the "")
 7. click "save job"
-
 
 ![email](./lib/omnipod_stash/Assets/task.png)
 
