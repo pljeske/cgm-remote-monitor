@@ -3,7 +3,7 @@ const emailHelper = require("./emailHelper.js");
 async function checkState(Typ) {
     // we create 'users' collection in newdb database
     var url = process.env.MONGODB_URI;
-
+    const dbName = url.split("?")[0].split("/")[3];
     // create a client to mongodb
     var MongoClient = require('mongodb').MongoClient;
 
@@ -15,7 +15,7 @@ async function checkState(Typ) {
     }
     var db = null;
     try {
-        db = dbClient.db('nightscout');
+        db = dbClient.db(dbName);
         // db pointing to newdb
         console.log("Switched to " + db.databaseName + " database");
         // create 'users' collection in newdb database
