@@ -56,13 +56,14 @@ git push --set-upstream origin wip/kitescout
 Congratulations, you now have my branch deployed to your heroku.
 
 ### Update to my latest code
-is done in two steps
+is done in three steps
 1. pull my latest commit from the branch
 2. push to your github
 ```bash
 git pull klalle wip/kitescout
 git push
 ```
+3. deploy the branch (again) from heroku/deploy
 
 ### Enable OmnipodStash email-functionality
 To enable the OmnipodStash-app to function, you also need:
