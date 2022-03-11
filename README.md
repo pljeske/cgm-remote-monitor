@@ -116,6 +116,7 @@ Only read this if you want to make changes and debug my applications in vscode!
 <details>
   <summary><b>This is the launch.json I use...</b></summary>
   press F5 and add replace content of launch.json with this: 
+  
 ```
 {
     // Use IntelliSense to learn about possible attributes.
